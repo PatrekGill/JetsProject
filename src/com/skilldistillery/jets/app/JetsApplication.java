@@ -1,7 +1,7 @@
 package com.skilldistillery.jets.app;
 
 import com.skilldistillery.jets.entities.*;
-import com.skilldistillery.jets.entities.menus.AirfieldMenu;
+import com.skilldistillery.jets.entities.menus.AirfieldMainMenu;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -40,7 +40,7 @@ public class JetsApplication {
 
 		}
 
-		AirfieldMenu airfieldMenu = new AirfieldMenu(jetApp.airfield,jetApp.getScanner());
+		AirfieldMainMenu airfieldMenu = new AirfieldMainMenu(jetApp.airfield,jetApp.getScanner());
 		airfieldMenu.openMenu();
 		jetApp.closeJetApp();
 	}

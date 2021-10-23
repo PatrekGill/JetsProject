@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public abstract class SelectionMenu extends Menu {
 
-    public SelectionMenu(Scanner scanner) {
+    protected SelectionMenu(Scanner scanner) {
         super(scanner);
     }
 
@@ -22,4 +22,8 @@ public abstract class SelectionMenu extends Menu {
     protected abstract void printMainMenu();
 
     protected abstract boolean selectMainMenuOption(int optionNumber);
+
+    protected void printInvalidOptionSelected(int optionNumber) {
+        System.out.println("Did not recognize option number: " + optionNumber + "\n");
+    }
 }

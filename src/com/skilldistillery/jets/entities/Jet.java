@@ -8,7 +8,7 @@ public abstract class Jet {
     private int range;
     private long price;
 
-    public Jet(String model, double speed, int range, long price) {
+    protected Jet(String model, double speed, int range, long price) {
         this.model = model;
         this.speed = speed;
         this.range = range;
@@ -17,7 +17,7 @@ public abstract class Jet {
 
     public void fly() {
         System.out.println(this);
-        System.out.printf("Flight time is: %.2f hours\n", getFlightTime());
+        System.out.printf("Flight time was: %.2f hours\n", getFlightTime());
         System.out.println();
     }
 
@@ -56,38 +56,37 @@ public abstract class Jet {
         this.price = price;
     }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(model, price, range, speed);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(model, price, range, speed);
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Jet other = (Jet) obj;
-		return Objects.equals(model, other.model) && price == other.price && range == other.range
-				&& Double.doubleToLongBits(speed) == Double.doubleToLongBits(other.speed);
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Jet other = (Jet) obj;
+        return Objects.equals(model, other.model) && price == other.price && range == other.range
+                && Double.doubleToLongBits(speed) == Double.doubleToLongBits(other.speed);
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MODEL: ");
-		builder.append(model);
-		builder.append(" | SPEED: ");
-		builder.append(speed);
-		builder.append("MPH | RANGE: ");
-		builder.append(range);
-		builder.append(" miles | PRICE: ");
-		builder.append(price);
-		builder.append(" USD");
-		return builder.toString();
-	}
-
-    
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("MODEL: ");
+        builder.append(model);
+        builder.append(" | SPEED: ");
+        builder.append(speed);
+        builder.append("MPH | RANGE: ");
+        builder.append(range);
+        builder.append(" miles | PRICE: ");
+        builder.append(price);
+        builder.append(" USD");
+        return builder.toString();
+    }
 }
+

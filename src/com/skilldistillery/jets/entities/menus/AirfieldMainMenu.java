@@ -1,15 +1,12 @@
 package com.skilldistillery.jets.entities.menus;
 
 import com.skilldistillery.jets.entities.*;
-
 import java.util.Scanner;
 
-
-
-public class AirfieldMenu extends SelectionMenu {
+public class AirfieldMainMenu extends SelectionMenu {
     private final Airfield airfield;
 
-    public AirfieldMenu(Airfield airfield, Scanner scanner) {
+    public AirfieldMainMenu(Airfield airfield, Scanner scanner) {
         super(scanner);
         this.airfield =  airfield;
     }
@@ -27,7 +24,8 @@ public class AirfieldMenu extends SelectionMenu {
         System.out.println("7. Tell VTOL Jets to takeoff");
         System.out.println("8. Add a jet to Fleet");
         System.out.println("9. Remove a jet from Fleet");
-        System.out.println("10. Quit");
+        System.out.println("10. Fly specific jet in Fleet");
+        System.out.println("11. Quit");
         System.out.println("==============================\n");
     }
 
@@ -72,13 +70,17 @@ public class AirfieldMenu extends SelectionMenu {
                 break;
             }
             case 10: {
+                openFlySpecificJetMenu();
+                break;
+            }
+            case 11: {
                 quit = true;
                 System.out.println("System stopping, goodbye.");
                 break;
             }
 
             default: {
-                System.out.println("Did not recognize option number: " + optionNumber + "\n");
+                printInvalidOptionSelected(optionNumber);
             }
 
         }
@@ -212,9 +214,15 @@ public class AirfieldMenu extends SelectionMenu {
         removeJetMenu.openMenu();
     }
 
+    private void openFlySpecificJetMenu() {
+        FlySpecificJetMenu flySpecificJetMenu = new FlySpecificJetMenu(airfield, getScanner());
+        flySpecificJetMenu.openMenu();
+    }
+
 
     private void printEmptyListMessage() {
         System.out.println("This list is empty...");
     }
 
 }
+

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public abstract class Menu {
     private final Scanner scanner;
 
-    public Menu(Scanner scanner) {
+    protected Menu(Scanner scanner) {
         this.scanner = scanner;
     }
 
@@ -104,4 +104,5 @@ public abstract class Menu {
         return input;
     }
 }
+
 
