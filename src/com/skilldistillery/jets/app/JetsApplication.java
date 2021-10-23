@@ -59,11 +59,11 @@ public class JetsApplication {
 
 		} else {
 			airfield.createJetOfType(
-					jetInfo[4],
-					jetInfo[0],
-					Double.parseDouble(jetInfo[1]),
-					Integer.parseInt(jetInfo[2]),
-					Long.parseLong(jetInfo[3])
+				jetInfo[4],
+				jetInfo[0],
+				Double.parseDouble(jetInfo[1]),
+				Integer.parseInt(jetInfo[2]),
+				Long.parseLong(jetInfo[3])
 			);
 
 		}

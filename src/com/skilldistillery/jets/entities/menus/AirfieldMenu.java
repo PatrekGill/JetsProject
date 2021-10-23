@@ -1,15 +1,13 @@
 package com.skilldistillery.jets.entities.menus;
 
+import com.skilldistillery.jets.entities.*;
+
 import java.util.Scanner;
 
-import com.skilldistillery.jets.entities.Airfield;
-import com.skilldistillery.jets.entities.CargoCarrier;
-import com.skilldistillery.jets.entities.Jet;
-import com.skilldistillery.jets.entities.PassengerInterface;
-import com.skilldistillery.jets.entities.VtolInterface;
+
 
 public class AirfieldMenu extends SelectionMenu {
-    private Airfield airfield;
+    private final Airfield airfield;
 
     public AirfieldMenu(Airfield airfield, Scanner scanner) {
         super(scanner);
@@ -70,7 +68,7 @@ public class AirfieldMenu extends SelectionMenu {
                 break;
             }
             case 9: {
-
+                openRemoveJetMenu();
                 break;
             }
             case 10: {
@@ -152,10 +150,16 @@ public class AirfieldMenu extends SelectionMenu {
             printEmptyListMessage();
 
         } else {
+            boolean foundCargoJet = false;
             for (Jet aircraft : airfield.getListOfJets()) {
                 if (aircraft instanceof CargoCarrier) {
                     ((CargoCarrier) aircraft).loadCargo();
+                    foundCargoJet = true;
                 }
+            }
+
+            if (!foundCargoJet) {
+                System.out.println("Found no cargo jets to load...");
             }
         }
     }
@@ -165,10 +169,16 @@ public class AirfieldMenu extends SelectionMenu {
             printEmptyListMessage();
 
         } else {
+            boolean foundVtolJet = false;
             for (Jet aircraft : airfield.getListOfJets()) {
                 if (aircraft instanceof VtolInterface) {
                     ((VtolInterface) aircraft).enterVerticalMode();
+                    foundVtolJet = true;
                 }
+            }
+
+            if (!foundVtolJet) {
+                System.out.println("Found no VTOL jets to takeoff...");
             }
         }
     }
@@ -178,10 +188,16 @@ public class AirfieldMenu extends SelectionMenu {
             printEmptyListMessage();
 
         } else {
+            boolean foundPassengerJet = false;
             for (Jet aircraft : airfield.getListOfJets()) {
                 if (aircraft instanceof PassengerInterface) {
                     ((PassengerInterface) aircraft).boardPassengers();
+                    foundPassengerJet = true;
                 }
+            }
+
+            if (!foundPassengerJet) {
+                System.out.println("Found no passenger jets for passengers to board...");
             }
         }
     }
@@ -190,6 +206,12 @@ public class AirfieldMenu extends SelectionMenu {
         AddJetMenu addJetMenu = new AddJetMenu(airfield, getScanner());
         addJetMenu.openMenu();
     }
+
+    private void openRemoveJetMenu() {
+        RemoveJetMenu removeJetMenu = new RemoveJetMenu(airfield, getScanner());
+        removeJetMenu.openMenu();
+    }
+
 
     private void printEmptyListMessage() {
         System.out.println("This list is empty...");

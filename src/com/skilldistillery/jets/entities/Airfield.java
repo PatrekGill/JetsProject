@@ -48,6 +48,22 @@ public class Airfield {
         return jet;
     }
 
+    public void printAirfieldFleetIndexMenu() {
+        System.out.println(); // space
+        for (int i = 0; i < listOfJets.size(); i++) {
+            System.out.printf("%s. %s\n",i,listOfJets.get(i));
+        }
+    }
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Airfield [listOfJets= ");
+		builder.append(listOfJets);
+		builder.append(" ]");
+		return builder.toString();
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(listOfJets);
@@ -64,16 +80,7 @@ public class Airfield {
 		Airfield other = (Airfield) obj;
 		return Objects.equals(listOfJets, other.listOfJets);
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Airfield [listOfJets=");
-		builder.append(listOfJets);
-		builder.append("]");
-		return builder.toString();
-	}
-
+    
     
 }
 
