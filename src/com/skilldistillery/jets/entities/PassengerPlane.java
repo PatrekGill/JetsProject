@@ -7,6 +7,7 @@ public class PassengerPlane extends Jet implements PassengerInterface {
 
     @Override
     public void boardPassengers() {
-        System.out.println("Boarding passengers...");
+        System.out.printf("%s is boarding passengers...\n",getModel());
     }
 }
+

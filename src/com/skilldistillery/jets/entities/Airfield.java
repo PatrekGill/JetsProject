@@ -2,6 +2,7 @@ package com.skilldistillery.jets.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Airfield {
     private List<Jet> listOfJets;
@@ -14,7 +15,7 @@ public class Airfield {
         return listOfJets;
     }
 
-    public void createJetOfType(String jetType, String model, double speed, int range, long price) {
+    public Jet createJetOfType(String jetType, String model, double speed, int range, long price) {
         Jet jet = null;
 
         switch (jetType.toLowerCase()) {
@@ -23,11 +24,11 @@ public class Airfield {
                 break;
             }
             case "cargo": {
-                jet = new VtolPlane(model,speed,range,price);
+                jet = new CargoPlane(model,speed,range,price);
                 break;
             }
             case "vtol": {
-                jet = new CargoPlane(model,speed,range,price);
+                jet = new VtolPlane(model,speed,range,price);
                 break;
             }
             case "generic": {
@@ -43,9 +44,36 @@ public class Airfield {
         if (jet != null) {
             listOfJets.add(jet);
         }
+
+        return jet;
     }
 
-    // TODO - .toString
-    // TODO - .equals and .hashCode
+	@Override
+	public int hashCode() {
+		return Objects.hash(listOfJets);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Airfield other = (Airfield) obj;
+		return Objects.equals(listOfJets, other.listOfJets);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Airfield [listOfJets=");
+		builder.append(listOfJets);
+		builder.append("]");
+		return builder.toString();
+	}
+
+    
 }
 

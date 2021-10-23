@@ -1,11 +1,15 @@
-package com.skilldistillery.jets.entities;
+package com.skilldistillery.jets.entities.menus;
 
 import java.util.Scanner;
 
 public abstract class Menu {
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
 
-    public static Scanner getScanner() {
+    public Menu(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public Scanner getScanner() {
         return scanner;
     }
 
@@ -100,3 +104,4 @@ public abstract class Menu {
         return input;
     }
 }
+

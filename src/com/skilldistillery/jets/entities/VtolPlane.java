@@ -7,7 +7,7 @@ public class VtolPlane extends Jet implements VtolInterface {
 
     @Override
     public void enterVerticalMode() {
-        System.out.println("Entering VTOL mode...");
+        System.out.printf("%s is entering VTOL mode...\n",getModel());
     }
 }
 

@@ -1,5 +1,7 @@
 package com.skilldistillery.jets.entities;
 
+import java.util.Objects;
+
 public abstract class Jet {
     private String model;
     private double speed;
@@ -15,7 +17,7 @@ public abstract class Jet {
 
     public void fly() {
         System.out.println(this);
-        System.out.println("Flight time is: " + getFlightTime());
+        System.out.printf("Flight time is: %.2f hours\n", getFlightTime());
         System.out.println();
     }
 
@@ -54,7 +56,38 @@ public abstract class Jet {
         this.price = price;
     }
 
-    // TODO - .toString
-    // TODO - .equals and .hashCode
-}
+	@Override
+	public int hashCode() {
+		return Objects.hash(model, price, range, speed);
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Jet other = (Jet) obj;
+		return Objects.equals(model, other.model) && price == other.price && range == other.range
+				&& Double.doubleToLongBits(speed) == Double.doubleToLongBits(other.speed);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Jet [model=");
+		builder.append(model);
+		builder.append(", speed=");
+		builder.append(speed);
+		builder.append(", range=");
+		builder.append(range);
+		builder.append(", price=");
+		builder.append(price);
+		builder.append("]");
+		return builder.toString();
+	}
+
+    
+}

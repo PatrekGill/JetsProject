@@ -1,12 +1,19 @@
-package com.skilldistillery.jets.entities;
+package com.skilldistillery.jets.entities.menus;
+
+import java.util.Scanner;
+
+import com.skilldistillery.jets.entities.Airfield;
+import com.skilldistillery.jets.entities.Jet;
 
 public class AddJetMenu extends SelectionMenu {
     private Airfield airfield;
 
-    public AddJetMenu(Airfield airfield) {
+    public AddJetMenu(Airfield airfield, Scanner scanner) {
+        super(scanner);
         this.airfield = airfield;
     }
 
+    @Override
     protected void printMainMenu() {
         System.out.println("==================================");
         System.out.println("1. Input new jet");
@@ -14,6 +21,7 @@ public class AddJetMenu extends SelectionMenu {
         System.out.println("==================================");
     }
 
+    @Override
     protected boolean selectMainMenuOption(int optionNumber) {
         boolean quit = false;
         switch (optionNumber) {
@@ -41,8 +49,23 @@ public class AddJetMenu extends SelectionMenu {
         int range = getNextInt("Enter in the jet's range in miles: ");
         long price = getNextLong("Enter in the jet's price in USD: ");
 
+        String type = null;
+        int selectedOption;
+        do {
+            printJetTypeMenu();
+            selectedOption = getNextInt("Select Jet Type: ");
+            type = getJetType(selectedOption);
+        } while (type == null);
 
-        airfield.createJetOfType(model);
+        Jet jet = airfield.createJetOfType(type, model, speed, range, price);
+        if (jet != null) {
+            System.out.println("Created Jet:");
+            System.out.println(jet);
+        } else {
+            System.out.println("An error occurred creating the jet...");
+        }
+
+        System.out.println();// space
     }
 
     private void printJetTypeMenu() {
@@ -53,6 +76,34 @@ public class AddJetMenu extends SelectionMenu {
         System.out.println("3. Passenger");
         System.out.println("4. Generic");
         System.out.println("==================================");
+    }
+
+    private String getJetType(int optionNumber) {
+        String type = null;
+        switch (optionNumber) {
+            case 1: {
+                type = "passenger";
+                break;
+            }
+            case 2: {
+                type = "cargo";
+                break;
+            }
+            case 3: {
+                type = "vtol";
+                break;
+            }
+            case 4: {
+                type = "generic";
+                break;
+            }
+
+            default: {
+                System.out.println("Did not recognize option number: " + optionNumber + "\n");
+            }
+        }
+
+        return type;
     }
 }
 

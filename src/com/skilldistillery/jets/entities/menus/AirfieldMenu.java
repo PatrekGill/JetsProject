@@ -1,15 +1,24 @@
-package com.skilldistillery.jets.entities;
+package com.skilldistillery.jets.entities.menus;
+
+import java.util.Scanner;
+
+import com.skilldistillery.jets.entities.Airfield;
+import com.skilldistillery.jets.entities.CargoCarrier;
+import com.skilldistillery.jets.entities.Jet;
+import com.skilldistillery.jets.entities.PassengerInterface;
+import com.skilldistillery.jets.entities.VtolInterface;
 
 public class AirfieldMenu extends SelectionMenu {
-
     private Airfield airfield;
 
-    public AirfieldMenu(Airfield airfield) {
+    public AirfieldMenu(Airfield airfield, Scanner scanner) {
+        super(scanner);
         this.airfield =  airfield;
     }
 
+    @Override
     protected void printMainMenu() {
-        System.out.println("==============================");
+        System.out.println("\n==============================");
         System.out.println("Main Menu:");
         System.out.println("1. List fleet");
         System.out.println("2. Fly all jets");
@@ -21,9 +30,10 @@ public class AirfieldMenu extends SelectionMenu {
         System.out.println("8. Add a jet to Fleet");
         System.out.println("9. Remove a jet from Fleet");
         System.out.println("10. Quit");
-        System.out.println("==============================");
+        System.out.println("==============================\n");
     }
 
+    @Override
     protected boolean selectMainMenuOption(int optionNumber) {
         boolean quit = false;
         switch (optionNumber) {
@@ -65,6 +75,7 @@ public class AirfieldMenu extends SelectionMenu {
             }
             case 10: {
                 quit = true;
+                System.out.println("System stopping, goodbye.");
                 break;
             }
 
@@ -114,7 +125,7 @@ public class AirfieldMenu extends SelectionMenu {
                 }
             }
 
-            System.out.println("The fastest jet is the: " + fastestJet.getModel() + " with a speed of: " + fastestSpeed);
+            System.out.printf("The fastest jet is the: %s with a top speed of: %s MPH\n",fastestJet.getModel(),fastestSpeed);
         }
     }
 
@@ -132,7 +143,7 @@ public class AirfieldMenu extends SelectionMenu {
                 }
             }
 
-            System.out.println("The fastest jet is the: " + jetWithLongestRange.getModel() + " with a range of: " + longestRange);
+            System.out.printf("The jet with the longest range is the: %s with a range of: %s miles\n", jetWithLongestRange.getModel(), longestRange);
         }
     }
 
@@ -176,11 +187,12 @@ public class AirfieldMenu extends SelectionMenu {
     }
 
     private void openAddJetMenu() {
-
+        AddJetMenu addJetMenu = new AddJetMenu(airfield, getScanner());
+        addJetMenu.openMenu();
     }
 
     private void printEmptyListMessage() {
         System.out.println("This list is empty...");
     }
-    
+
 }
