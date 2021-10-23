@@ -77,15 +77,15 @@ public abstract class Jet {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Jet [model=");
+		builder.append("MODEL: ");
 		builder.append(model);
-		builder.append(", speed=");
+		builder.append(" | SPEED: ");
 		builder.append(speed);
-		builder.append(", range=");
+		builder.append("MPH | RANGE: ");
 		builder.append(range);
-		builder.append(", price=");
+		builder.append(" miles | PRICE: ");
 		builder.append(price);
-		builder.append("]");
+		builder.append(" USD");
 		return builder.toString();
 	}
 
