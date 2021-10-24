@@ -53,7 +53,7 @@ public class AddJetMenu extends SelectionMenu {
             type = getJetType(selectedOption);
         } while (type == null);
 
-        String model = getNextLine("Enter in the jet's Model: ");
+        String model = getNextLine("Enter in the jet's Model (no commas): ");
         double speed = getNextDouble("Enter in the jet's speed in MPH: ");
         int range = getNextInt("Enter in the jet's range in miles: ");
         long price = getNextLong("Enter in the jet's price in USD: ");

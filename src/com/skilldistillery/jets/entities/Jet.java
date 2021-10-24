@@ -108,7 +108,7 @@ public abstract class Jet {
         builder.append(model);
         builder.append(" | SPEED: ");
         builder.append(speed);
-        builder.append("MPH | RANGE: ");
+        builder.append(" MPH | RANGE: ");
         builder.append(range);
         builder.append(" miles | PRICE: ");
         builder.append(price);
