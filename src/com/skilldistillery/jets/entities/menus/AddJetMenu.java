@@ -5,8 +5,9 @@ import java.util.Scanner;
 import com.skilldistillery.jets.entities.Airfield;
 import com.skilldistillery.jets.entities.Jet;
 
+
 public class AddJetMenu extends SelectionMenu {
-    private Airfield airfield;
+    private final Airfield airfield;
 
     public AddJetMenu(Airfield airfield, Scanner scanner) {
         super(scanner);
@@ -15,7 +16,7 @@ public class AddJetMenu extends SelectionMenu {
 
     @Override
     protected void printMainMenu() {
-        System.out.println("==================================");
+        System.out.println("\n==================================");
         System.out.println("1. Input new jet");
         System.out.println("2. Return to main airfield menu");
         System.out.println("==================================");
@@ -44,11 +45,6 @@ public class AddJetMenu extends SelectionMenu {
 
     private void inputJetMenu() {
         System.out.println("\nJet Input Menu:");
-        String model = getNextLine("Enter in the jet's Model: ");
-        double speed = getNextDouble("Enter in the jet's speed in MPH: ");
-        int range = getNextInt("Enter in the jet's range in miles: ");
-        long price = getNextLong("Enter in the jet's price in USD: ");
-
         String type = null;
         int selectedOption;
         do {
@@ -57,19 +53,26 @@ public class AddJetMenu extends SelectionMenu {
             type = getJetType(selectedOption);
         } while (type == null);
 
+        String model = getNextLine("Enter in the jet's Model: ");
+        double speed = getNextDouble("Enter in the jet's speed in MPH: ");
+        int range = getNextInt("Enter in the jet's range in miles: ");
+        long price = getNextLong("Enter in the jet's price in USD: ");
+
         Jet jet = airfield.createJetOfType(type, model, speed, range, price);
         if (jet != null) {
             System.out.println("Created Jet:");
             System.out.println(jet);
+
         } else {
             System.out.println("An error occurred creating the jet...");
+
         }
 
         System.out.println();// space
     }
 
     private void printJetTypeMenu() {
-        System.out.println("==================================");
+        System.out.println("\n==================================");
         System.out.println("Jet Types Menu");
         System.out.println("1. Cargo");
         System.out.println("2. VTOL");
@@ -86,11 +89,11 @@ public class AddJetMenu extends SelectionMenu {
                 break;
             }
             case 2: {
-                type = "cargo";
+                type = "vtol";
                 break;
             }
             case 3: {
-                type = "vtol";
+                type = "cargo";
                 break;
             }
             case 4: {

@@ -1,16 +1,17 @@
 package com.skilldistillery.jets.entities.menus;
 
 import com.skilldistillery.jets.entities.*;
+import java.util.List;
 import java.util.Scanner;
 
-public class FlySpecificJetMenu extends AirfieldIndexMenu {
+public class FlySpecificJetMenu extends IndexMenu<Jet> {
 
-    public FlySpecificJetMenu(Airfield airfield, Scanner scanner) {
-        super(airfield,scanner);
+    public FlySpecificJetMenu(List<Jet> listToIndex, Scanner scanner) {
+        super(listToIndex,scanner);
     }
 
     protected void onIndexSelected(int index) {
-        Jet jetToFly = airfield.getListOfJets().get(index);
+        Jet jetToFly = listToIndex.get(index);
         System.out.println("Flying Jet...");
         jetToFly.fly();
     }

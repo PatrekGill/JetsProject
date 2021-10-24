@@ -25,7 +25,8 @@ public class AirfieldMainMenu extends SelectionMenu {
         System.out.println("8. Add a jet to Fleet");
         System.out.println("9. Remove a jet from Fleet");
         System.out.println("10. Fly specific jet in Fleet");
-        System.out.println("11. Quit");
+        System.out.println("11. Assign pilots to jets");
+        System.out.println("12. Quit");
         System.out.println("==============================\n");
     }
 
@@ -74,6 +75,10 @@ public class AirfieldMainMenu extends SelectionMenu {
                 break;
             }
             case 11: {
+                openAssignPilotsMenu();
+                break;
+            }
+            case 12: {
                 quit = true;
                 System.out.println("System stopping, goodbye.");
                 break;
@@ -215,10 +220,23 @@ public class AirfieldMainMenu extends SelectionMenu {
     }
 
     private void openFlySpecificJetMenu() {
-        FlySpecificJetMenu flySpecificJetMenu = new FlySpecificJetMenu(airfield, getScanner());
+        FlySpecificJetMenu flySpecificJetMenu = new FlySpecificJetMenu(airfield.getListOfJets(), getScanner());
         flySpecificJetMenu.openMenu();
     }
 
+    private void openAssignPilotsMenu() {
+        if (airfield.getListOfJets().isEmpty()) {
+            System.out.println("The jets menu does not have any jets...");
+            return;
+        }
+        if (airfield.getListOfPilots().isEmpty()) {
+            System.out.println("There are no pilots to assign to jets...");
+            return;
+        }
+
+        AssignPilotMenu assignPilotMenu = new AssignPilotMenu(airfield,getScanner());
+        assignPilotMenu.openMenu();
+    }
 
     private void printEmptyListMessage() {
         System.out.println("This list is empty...");

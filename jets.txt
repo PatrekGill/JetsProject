@@ -1,5 +1,5 @@
-Airbus A220, 541, 3450, 91500000, passenger
-Boeing 707-320C, 604, 3335, 57000000, passenger
-Boeing 787-10, 561, 7400, 300000000, passenger
-AV-8B+ Harrier, 662, 1036, 1500000, vtol
-Boeing C-17 Globemaster, 520, 2780, 340000000, cargo
+Airbus A220,541,3450,91500000,passenger
+Boeing 707-320C,604,3335,57000000,passenger
+Boeing 787-10,561,7400,300000000,passenger
+AV-8B+ Harrier,662,1036,1500000,vtol
+Boeing C-17 Globemaster,520,2780,340000000,cargo

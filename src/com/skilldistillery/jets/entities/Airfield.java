@@ -5,14 +5,29 @@ import java.util.List;
 import java.util.Objects;
 
 public class Airfield {
-    private List<Jet> listOfJets;
+    private final List<Jet> listOfJets;
+    private final List<Pilot> listOfPilots;
 
     public Airfield() {
         listOfJets = new ArrayList<>();
+        listOfPilots = new ArrayList<>();
     }
 
     public List<Jet> getListOfJets() {
         return listOfJets;
+    }
+    public List<Pilot> getListOfPilots() {
+        return listOfPilots;
+    }
+    public Pilot getUnassignedPilot() {
+        Pilot pilotToReturn = null;
+        for (Pilot pilot: listOfPilots) {
+            if (pilot.getJet() == null) {
+                pilotToReturn = pilot;
+            }
+        }
+
+        return pilotToReturn;
     }
 
     public Jet createJetOfType(String jetType, String model, double speed, int range, long price) {
@@ -43,30 +58,21 @@ public class Airfield {
 
         if (jet != null) {
             listOfJets.add(jet);
+            if (!listOfPilots.isEmpty()) {
+                Pilot pilotToAssign = getUnassignedPilot();
+                if (pilotToAssign != null) {
+                    jet.setPilot(pilotToAssign);
+                    pilotToAssign.setJet(jet);
+                }
+            }
         }
 
         return jet;
     }
 
-    public void printAirfieldFleetIndexMenu() {
-        System.out.println(); // space
-        for (int i = 0; i < listOfJets.size(); i++) {
-            System.out.printf("%s. %s\n",i,listOfJets.get(i));
-        }
-    }
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Airfield [listOfJets= ");
-		builder.append(listOfJets);
-		builder.append(" ]");
-		return builder.toString();
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(listOfJets);
+		return Objects.hash(listOfJets, listOfPilots);
 	}
 
 	@Override
@@ -78,9 +84,20 @@ public class Airfield {
 		if (getClass() != obj.getClass())
 			return false;
 		Airfield other = (Airfield) obj;
-		return Objects.equals(listOfJets, other.listOfJets);
+		return Objects.equals(listOfJets, other.listOfJets) && Objects.equals(listOfPilots, other.listOfPilots);
 	}
-    
-    
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Airfield [listOfJets=");
+		builder.append(listOfJets);
+		builder.append(", listOfPilots=");
+		builder.append(listOfPilots);
+		builder.append("]");
+		return builder.toString();
+	}
+
+
 }
 

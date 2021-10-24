@@ -7,12 +7,18 @@ public abstract class Jet {
     private double speed;
     private int range;
     private long price;
+    private Pilot pilot;
 
     protected Jet(String model, double speed, int range, long price) {
+        this(model,speed,range,price,null);
+    }
+
+    protected Jet(String model, double speed, int range, long price, Pilot pilot) {
         this.model = model;
         this.speed = speed;
         this.range = range;
         this.price = price;
+        this.pilot = pilot;
     }
 
     public void fly() {
@@ -48,6 +54,12 @@ public abstract class Jet {
         this.range = range;
     }
 
+    public Pilot getPilot() {
+        return pilot;
+    }
+    public void setPilot(Pilot pilot) {
+        this.pilot = pilot;
+    }
 
     public double getPrice() {
         return price;
@@ -85,7 +97,14 @@ public abstract class Jet {
         builder.append(range);
         builder.append(" miles | PRICE: ");
         builder.append(price);
-        builder.append(" USD");
+        builder.append(" USD | ");
+        builder.append(getClass());
+
+        if (pilot != null) {
+            builder.append(" | PILOT: ");
+            builder.append(pilot.getName());
+        }
+
         return builder.toString();
     }
 }
