@@ -8,16 +8,18 @@ public abstract class Jet {
     private int range;
     private long price;
     private Pilot pilot;
+    private final String jetType;
 
-    protected Jet(String model, double speed, int range, long price) {
-        this(model,speed,range,price,null);
+    protected Jet(String model, double speed, int range, long price, String jetType) {
+        this(model,speed,range,price,jetType,null);
     }
 
-    protected Jet(String model, double speed, int range, long price, Pilot pilot) {
+    protected Jet(String model, double speed, int range, long price, String jetType, Pilot pilot) {
         this.model = model;
         this.speed = speed;
-        this.range = range;
+        this.range = range;        
         this.price = price;
+        this.jetType = jetType;
         this.pilot = pilot;
     }
 
@@ -35,18 +37,25 @@ public abstract class Jet {
         this.model = model;
     }
 
+    
+    public String getJetType() {
+		return jetType;
+	}
 
-    public double getSpeed() {
+    
+	public double getSpeed() {
         return speed;
     }
     public void setSpeed(double speed) {
         this.speed = speed;
     }
 
+    
     public double getFlightTime() {
         return (double)range / speed;
     }
 
+    
     public int getRange() {
         return range;
     }
@@ -54,6 +63,7 @@ public abstract class Jet {
         this.range = range;
     }
 
+    
     public Pilot getPilot() {
         return pilot;
     }
@@ -61,32 +71,37 @@ public abstract class Jet {
         this.pilot = pilot;
     }
 
-    public double getPrice() {
+    
+    public long getPrice() {
         return price;
     }
     public void setPrice(long price) {
         this.price = price;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(model, price, range, speed);
-    }
+    
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Jet other = (Jet) obj;
-        return Objects.equals(model, other.model) && price == other.price && range == other.range
-                && Double.doubleToLongBits(speed) == Double.doubleToLongBits(other.speed);
-    }
+	public int hashCode() {
+		return Objects.hash(jetType, model, pilot, price, range, speed);
+	}
 
-    @Override
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Jet other = (Jet) obj;
+		return Objects.equals(jetType, other.jetType) && Objects.equals(model, other.model)
+				&& Objects.equals(pilot, other.pilot) && price == other.price && range == other.range
+				&& Double.doubleToLongBits(speed) == Double.doubleToLongBits(other.speed);
+	}
+
+	
+	@Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("MODEL: ");
@@ -97,8 +112,8 @@ public abstract class Jet {
         builder.append(range);
         builder.append(" miles | PRICE: ");
         builder.append(price);
-        builder.append(" USD | ");
-        builder.append(getClass());
+        builder.append(" USD | TYPE: ");
+        builder.append(jetType);
 
         if (pilot != null) {
             builder.append(" | PILOT: ");

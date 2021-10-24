@@ -26,7 +26,8 @@ public class AirfieldMainMenu extends SelectionMenu {
         System.out.println("9. Remove a jet from Fleet");
         System.out.println("10. Fly specific jet in Fleet");
         System.out.println("11. Assign pilots to jets");
-        System.out.println("12. Quit");
+        System.out.println("12. Save jets to file");
+        System.out.println("13. Quit");
         System.out.println("==============================\n");
     }
 
@@ -79,6 +80,10 @@ public class AirfieldMainMenu extends SelectionMenu {
                 break;
             }
             case 12: {
+            	openSaveJetsMenu();
+                break;
+            }
+            case 13: {
                 quit = true;
                 System.out.println("System stopping, goodbye.");
                 break;
@@ -215,13 +220,27 @@ public class AirfieldMainMenu extends SelectionMenu {
     }
 
     private void openRemoveJetMenu() {
-        RemoveJetMenu removeJetMenu = new RemoveJetMenu(airfield, getScanner());
-        removeJetMenu.openMenu();
+    	if (airfield.getListOfJets().isEmpty()) {
+    		printEmptyListMessage();
+    		
+    	} else {
+    		RemoveJetMenu removeJetMenu = new RemoveJetMenu(airfield, getScanner());
+            removeJetMenu.openMenu();
+            
+    	}
+        
     }
 
     private void openFlySpecificJetMenu() {
-        FlySpecificJetMenu flySpecificJetMenu = new FlySpecificJetMenu(airfield.getListOfJets(), getScanner());
-        flySpecificJetMenu.openMenu();
+    	if (airfield.getListOfJets().isEmpty()) {
+    		printEmptyListMessage();
+    		
+    	} else {
+    		FlySpecificJetMenu flySpecificJetMenu = new FlySpecificJetMenu(airfield.getListOfJets(), getScanner());
+            flySpecificJetMenu.openMenu();
+    		
+    	}
+        
     }
 
     private void openAssignPilotsMenu() {
@@ -236,6 +255,18 @@ public class AirfieldMainMenu extends SelectionMenu {
 
         AssignPilotMenu assignPilotMenu = new AssignPilotMenu(airfield,getScanner());
         assignPilotMenu.openMenu();
+    }
+    
+    private void openSaveJetsMenu() {
+    	if (airfield.getListOfJets().isEmpty()) {
+    		printEmptyListMessage();
+    		
+    	} else {
+    		SaveJetsMenu saveJetsMenu = new SaveJetsMenu(airfield.getListOfJets(), getScanner());
+        	saveJetsMenu.openMenu();
+        	
+    	}
+    	
     }
 
     private void printEmptyListMessage() {
