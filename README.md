@@ -4,7 +4,7 @@
 A Java console application that lets one "manage" an airfield with jets & pilots. Demonstrates practice of Object Oriented Programming.
 
 ## Operation
-Download the project and build and run it. When the application starts it will parse information from the `jets.txt` & `pilot_names.txt` to initialize the program with some starter info.
+Download the project and build and run it. When the application starts it will parse information from the `jets.txt` & `pilot_names.txt` to initialize the program with some starter info. `JetsApplication.java` is the location of the only main method and where the program starts. The primary logic is located in the `AirfieldMainMenu.java`.
 
 You'll be presented with a main menu that has several options. Of note is the `Save jets to file` option. It allows you to enter a custom filename to save the current airfield's jet information in the same format that is in `jets.txt`. The file will save in the root directory of the project (same as `jets.txt` & `pilot_names.txt`).
 
