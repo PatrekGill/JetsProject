@@ -136,6 +136,7 @@ public class AirfieldMainMenu extends SelectionMenu {
             }
 
             System.out.printf("The fastest jet is the: %s with a top speed of: %s MPH\n",fastestJet.getModel(),fastestSpeed);
+            System.out.println(fastestJet);
         }
     }
 
@@ -154,6 +155,7 @@ public class AirfieldMainMenu extends SelectionMenu {
             }
 
             System.out.printf("The jet with the longest range is the: %s with a range of: %s miles\n", jetWithLongestRange.getModel(), longestRange);
+            System.out.println(jetWithLongestRange);
         }
     }
 
