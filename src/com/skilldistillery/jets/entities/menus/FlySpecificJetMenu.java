@@ -12,7 +12,7 @@ public class FlySpecificJetMenu extends IndexMenu<Jet> {
 
     protected void onIndexSelected(int index) {
         Jet jetToFly = listToIndex.get(index);
-        System.out.println("Flying Jet...");
+        System.out.println("\nFlying Jet...");
         jetToFly.fly();
     }
 }

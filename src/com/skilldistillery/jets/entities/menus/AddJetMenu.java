@@ -85,7 +85,7 @@ public class AddJetMenu extends SelectionMenu {
         String type = null;
         switch (optionNumber) {
             case 1: {
-                type = "passenger";
+                type = "cargo";
                 break;
             }
             case 2: {
@@ -93,7 +93,7 @@ public class AddJetMenu extends SelectionMenu {
                 break;
             }
             case 3: {
-                type = "cargo";
+                type = "passenger";
                 break;
             }
             case 4: {
